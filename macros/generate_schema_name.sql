@@ -11,10 +11,9 @@
         {% elif target.name == 'pre'  %} {{ custom_schema_name | trim }}  
         {% elif target.name == 'pro'  %} {{ custom_schema_name | trim }}
         {% elif target.name == 'user_dev'  %} {{ custom_schema_name | trim }}
-        {% else %} {{target.schema}}_{{ custom_schema_name | trim }}
+        {% else %} 
+        {{target.schema}}_{{ custom_schema_name | trim }}
         {% endif %}
-
-        {{ custom_schema_name | trim }}
 
     {%- endif -%}
 
