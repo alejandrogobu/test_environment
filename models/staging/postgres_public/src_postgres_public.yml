@@ -6,7 +6,7 @@ sources:
     description: >
       Raw data demo from PostgreSQL Database.
     schema: postgres_public # this is the schema our raw data lives in
-    database: fivetran_agonzalez # this is the name of our database
+    database: "{% if  target.name == 'dev' %} bronze_dev {% elif target.name == 'pre'  %} bronze_pre  {% elif target.name == 'pro'  %} bronze_pro {% else %} bronze_{{target.schema}} {% endif %}"
 
     quoting:
       database: false
@@ -87,5 +87,7 @@ sources:
               Date that the data was loaded.
             tests:
               - not_null
+
+
 
 
