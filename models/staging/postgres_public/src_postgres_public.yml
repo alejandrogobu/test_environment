@@ -6,7 +6,7 @@ sources:
     description: >
       Raw data demo from PostgreSQL Database.
     schema: postgres_public # this is the schema our raw data lives in
-    database: "{% if  target.name == 'dev' %} bronze_dev {% elif target.name == 'ci'  %} bronze_dev {% elif target.name == 'pre'  %} bronze_pre  {% elif target.name == 'pro'  %} bronze_pro {% else %} bronze_{{target.schema}} {% endif %}"
+    database: "{% if  target.name == 'dev' %} bronze_dev {% elif target.name == 'ci'  %} bronze_dev {% elif target.name == 'pre'  %} bronze_pre  {% elif target.name == 'pro'  %} bronze_pro {% else %} bronze_{{target.database}} {% endif %}"
 
     quoting:
       database: false
