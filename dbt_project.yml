@@ -34,11 +34,13 @@ models:
   test_environment:
     staging:
       +materialized: view
-      +database: "{% if  target.name == 'dev' %} silver_dev {% elif target.name == 'pre'  %} silver_pre  {% elif target.name == 'pro'  %} silver_pro {% endif %}"
+      +database: "{% if  target.name == 'dev' %} gold_dev {% elif target.name == 'ci' %} gold_dev {% elif target.name == 'pre'  %} gold_pre  {% elif target.name == 'pro'  %} gold_pro {% else %} gold_{{target.schema}} {% endif %}"
       postgres_public:
         +schema: postgres_public
+      google_sheets:
+        +schema: google_sheets
     marts:
-      +database: "{% if  target.name == 'dev' %} gold_dev {% elif target.name == 'pre'  %} gold_pre  {% elif target.name == 'pro'  %} gold_pro {% endif %}"
+      +database: "{% if  target.name == 'dev' %} gold_dev {% elif target.name == 'ci' %} gold_dev {% elif target.name == 'pre'  %} gold_pre  {% elif target.name == 'pro'  %} gold_pro {% else %} gold_{{target.schema}} {% endif %}"
       +materialized: table
       core:
         +schema: core
